@@ -5,14 +5,17 @@
  
  <section id="form-container">
      <img id="logo" src="{% static 'images/chat-icon.png' %}" alt="No image">
-     <div>
+     <div id="Welcome-message">
         <h1>Welcome To MyChat</h1>
-        <p>a group calling video application just for you!</p>
+        <p>A group calling video application just for you!</p>
      </div>
 
      <form id="form">
         <div class="form-field">
             <input type="text" name="room" placeholder="Enter a Room name......" style="text-transform:uppercase;">
+        </div>
+        <div class="form-field">
+            <input type="text" name="username" placeholder="Enter your name......" style="text-transform:uppercase;">
         </div>
         <div class="form-field">
             <input type="submit" value="Join Stream">
