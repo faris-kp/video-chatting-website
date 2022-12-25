@@ -3,6 +3,7 @@ const CHANNEL = sessionStorage.getItem('room')
 const TOKEN = sessionStorage.getItem('token')
 let UID = sessionStorage.getItem('UID')
 
+let NAME = sessionStorage.getItem('name')
 
 // const APP_ID = '' /*agoura app _id*/ 
 // const CHANNEL ='' /*agoura channel name*/
@@ -32,7 +33,7 @@ let JoinAndDisplayLocalStream = async() => {
     LocalTracks = await AgoraRTC.createMicrophoneAndCameraTracks()
 
     let player =`<div class="video-container" id="user-container-${UID}">
-                    <div class="username"><span class="user-name">My Name</span></div>
+                    <div class="username-wrapper"><span class="user-name">My Name</span></div>
                     <div class="video-player" id="user-${UID}"></div>
                 </div>`
     
@@ -55,7 +56,7 @@ let handleUserJoined = async(user,mediaType) =>{
             player.remove()
         }
         player =`<div class="video-container" id="user-container-${user.uid}">
-                    <div class="username"><span class="user-name">My Name</span></div>
+                    <div class="username-wrapper"><span class="user-name">My Name</span></div>
                     <div class="video-player" id="user-${user.uid}"></div>
                 </div>`
 

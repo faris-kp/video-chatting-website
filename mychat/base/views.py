@@ -4,6 +4,7 @@ from django.http import JsonResponse
 import os
 import random
 import time
+import json
 # Create your views here.
 
 
@@ -28,3 +29,7 @@ def lobby(request):
 def room(request):
     return render(request,'base/room.html')
     
+
+# def createUser(request):
+#     data = json.loads(request.body)
+#     return JsonResponse
