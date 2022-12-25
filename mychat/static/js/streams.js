@@ -32,8 +32,10 @@ let JoinAndDisplayLocalStream = async() => {
 
     LocalTracks = await AgoraRTC.createMicrophoneAndCameraTracks()
 
+    let member = await createMember()
+
     let player =`<div class="video-container" id="user-container-${UID}">
-                    <div class="username-wrapper"><span class="user-name">My Name</span></div>
+                    <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
                     <div class="video-player" id="user-${UID}"></div>
                 </div>`
     
@@ -101,6 +103,19 @@ let toggleMic = async (e) =>{
         await LocalTracks[0].setMuted(true)
         e.target.style.backgroundColor = 'rgb(255, 80, 80, 1)'
     }
+}
+
+let createMember = async() =>{
+    let response = await fetch('/create_member/', {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({'name':NAME , 'room_name':CHANNEL ,'UID':UID})
+       
+    })
+    let member = await response.json()
+    return member
 }
 
 JoinAndDisplayLocalStream()

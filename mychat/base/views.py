@@ -5,6 +5,8 @@ import os
 import random
 import time
 import json
+from .models import RoomMember
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -29,7 +31,14 @@ def lobby(request):
 def room(request):
     return render(request,'base/room.html')
     
+@csrf_exempt
+def createMember(request):
+    data = json.loads(request.body)
 
-# def createUser(request):
-#     data = json.loads(request.body)
-#     return JsonResponse
+    member,created = RoomMember.objects.get_or_create(
+        name = data['name'],
+        uid = data['UID'],
+        room_name = data['room_name']
+
+    )
+    return JsonResponse({'name':data['name']}, safe=False)
